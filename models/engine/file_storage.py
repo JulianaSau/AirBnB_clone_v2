@@ -68,3 +68,8 @@ class FileStorage:
                 del self.__objects["{}.{}".format(type(obj).__name__, obj.id)]
             except (AttributeError, KeyError):
                 pass
+    
+    def close(self):
+        """ Deserializes the pythin objects """
+        
+        self.reload()
