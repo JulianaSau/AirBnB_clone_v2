@@ -9,7 +9,7 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
         """ The city class, contains state ID and name """
         
         __tablename__ = 'cities'
-        state_id = Column(String(60), ForeignKey("states.id") nullable=False)
+        state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
         name = Column(String(128), nullable=False)
         
 

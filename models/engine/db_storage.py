@@ -91,7 +91,7 @@ class DBStorage():
             Creates the current database session (self.__session) from the engine (self.__engine)
         """
         # all classes who inherit from Base must be imported before calling this fn
-        Base.metadata.create_all(engine)
+        Base.metadata.create_all(self.__engine)
         
         session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
