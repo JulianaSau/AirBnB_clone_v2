@@ -138,15 +138,16 @@ class HBNBCommand(cmd.Cmd):
                 value = value[1:-1]
                 # Replace any underscore with spaces
                 value = value.replace("_", " ")
-            elif '.' in value:
+                # handles floats and excludes emails
+            elif '.' in value and "@" not in value:
                 value = float(value)
             elif value.isdigit():
                 value = int(value)
             else:
                 pass
                 
-            # heck if instance has the given 
-            # attribute before updating value
+            # Check if instance has the given 
+            # attribute before creating the values
             if hasattr(new_instance, key):
                 setattr(new_instance, key, value)
                 
