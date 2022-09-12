@@ -1,0 +1,5 @@
+# Project files
+__pycache__
+models/__pycache__/*.pyc
+models/engine/__pycache__/*.pyc
+file.json
