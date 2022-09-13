@@ -154,8 +154,8 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time.
 
 # Authors
-Sau Nyange - [Github](https: // github.com / JulianaSau)
-Adam Keino - [Github](https: // github.com / adamkeino)
+Sau Nyange - [Github](https://github.com/JulianaSau) </br>
+Adam Keino - [Github](https://github.com/adamkeino)
 
 # License
 Public Domain. No copy write protection.
