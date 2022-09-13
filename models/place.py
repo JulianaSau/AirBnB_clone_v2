@@ -37,13 +37,13 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
         user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
         name = Column(String(128), nullable=False)
-        description = Column(String(1024), nullable=True)
-        number_rooms = Column(Integer, nullable=False, default=0)
-        number_bathrooms = Column(Integer, nullable=False, default=0)
-        max_guest = Column(Integer, nullable=False, default=0)
-        price_by_night = Column(Integer, nullable=False, default=0)
-        latitude = Column(Float, nullable=True)
-        longitude = Column(Float, nullable=True)
+        description = Column(String(1024), nullable=True, default='')
+        number_rooms = Column(Integer(), nullable=False, default=0)
+        number_bathrooms = Column(Integer(), nullable=False, default=0)
+        max_guest = Column(Integer(), nullable=False, default=0)
+        price_by_night = Column(Integer(), nullable=False, default=0)
+        latitude = Column(Float(), nullable=True, default=0.0)
+        longitude = Column(Float(), nullable=True, default=0.0)
         amenity_ids = []
         
         reviews = relationship("Review", backref='place', cascade='all, delete, delete-orphan')
@@ -83,5 +83,5 @@ else:
             Amenity.id to the attribute amenity_ids """
             
             # if object isnt of type Amenity, do nothing
-            if type(obj)== Amenity:
+            if type(obj) == Amenity:
                 self.amenity_ids.append(obj.id)
