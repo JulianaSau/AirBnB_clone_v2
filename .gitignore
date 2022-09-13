@@ -5,3 +5,4 @@ models/engine/__pycache__/*.pyc
 file.json
 test_params_create
 main_delete.py
+main_place_amenities.py
