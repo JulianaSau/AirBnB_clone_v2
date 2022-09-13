@@ -17,7 +17,7 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
         last_name = Column(String(128), nullable=False)
         
         #  If the User object is deleted, all linked Place objects must be automatically deleted
-        places = relationship("Place", backref='user' cascade='all, delete, delete-orphan')
+        places = relationship("Place", backref='user', cascade='all, delete, delete-orphan')
         
 else:   
     class User(BaseModel):
