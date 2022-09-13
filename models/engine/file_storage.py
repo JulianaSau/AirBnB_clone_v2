@@ -11,15 +11,15 @@ class FileStorage:
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
         if cls is not None:
-            # if class is specified, this returns a 
+            # if class is specified, this returns a
             # dictionary of objects belonging to the class
             class_dict = {}
             for key, value in self.__objects.items():
                 if type(value).__name__ == cls.__name__:
                     class_dict[key] = value
-            return class_dict        
-        else:        
-            # Otherwise, returns the _objects dictionary   
+            return class_dict
+        else:
+            # Otherwise, returns the _objects dictionary
             return FileStorage.__objects
 
     def new(self, obj):
@@ -58,7 +58,7 @@ class FileStorage:
                     self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
-        
+
     def delete(self, obj=None):
         """ Deletes an object from _objects"""
         if obj is None:
@@ -68,8 +68,8 @@ class FileStorage:
                 del self.__objects["{}.{}".format(type(obj).__name__, obj.id)]
             except (AttributeError, KeyError):
                 pass
-    
+
     def close(self):
         """ Deserializes the pythin objects """
-        
+
         self.reload()

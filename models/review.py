@@ -13,7 +13,7 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
         user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
         text = Column(String(1024), nullable=False)
 else:
-     class Review(BaseModel):
+    class Review(BaseModel):
         """ Review class to store review information """
         place_id = ""
         user_id = ""

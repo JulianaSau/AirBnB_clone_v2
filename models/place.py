@@ -32,7 +32,7 @@ place_amenities = Table(
 if getenv('HBNB_TYPE_STORAGE') == 'db':
     class Place(BaseModel, Base):
         """ A place to stay """
-        
+
         __tablename__ = 'places'
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
         user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
@@ -45,9 +45,15 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
         latitude = Column(Float(), nullable=True, default=0.0)
         longitude = Column(Float(), nullable=True, default=0.0)
         amenity_ids = []
-        
-        reviews = relationship("Review", backref='place', cascade='all, delete, delete-orphan')
-        amenities = relationship("Amenity", secondary="place_amenity", viewonly=False)
+
+        reviews = relationship(
+            "Review",
+            backref='place',
+            cascade='all, delete, delete-orphan')
+        amenities = relationship(
+            "Amenity",
+            secondary="place_amenity",
+            viewonly=False)
 else:
     class Place(BaseModel):
         """ A place to stay """
@@ -62,26 +68,28 @@ else:
         latitude = 0.0
         longitude = 0.0
         amenity_ids = []
-        
+
         @property
         def reviews(self):
             """ Getter method for reviews """
             reviews = models.storage.all(Review).values()
-            reviews_list = [review for review in reviews if self.id == review.place_id]
+            reviews_list = [
+                review for review in reviews if self.id == review.place_id]
             return reviews_list
-        
+
         @property
         def amenities(self):
             """ Getter method for amenities """
             amenities = models.storage.all(Amenity).values()
-            amenities_list = [amenity for amenity in amenities if amenity.id in self.amenity_ids]
+            amenities_list = [
+                amenity for amenity in amenities if amenity.id in self.amenity_ids]
             return amenities_list
-        
+
         @amenities.setter
         def amenities(self, obj):
-            """ handles append method for adding an 
+            """ handles append method for adding an
             Amenity.id to the attribute amenity_ids """
-            
+
             # if object isnt of type Amenity, do nothing
-            if type(obj) == Amenity:
+            if isinstance(obj, Amenity):
                 self.amenity_ids.append(obj.id)

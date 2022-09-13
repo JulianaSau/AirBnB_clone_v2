@@ -8,7 +8,7 @@ from os import getenv
 if getenv('HBNB_TYPE_STORAGE') == 'db':
     class Amenity(BaseModel, Base):
         """ State Class """
-        
+
         __tablename__ = 'amenities'
         name = Column(String(128), nullable=False)
 

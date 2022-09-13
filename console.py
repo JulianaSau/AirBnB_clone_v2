@@ -117,21 +117,21 @@ class HBNBCommand(cmd.Cmd):
         """ Create an object of any class"""
         params = args.split()
         classname = params[0]
-        
+
         if not args:
             print("** class name missing **")
             return
         elif classname not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        
+
         new_instance = HBNBCommand.classes[classname]()
         for i in range(1, len(params)):
             # Separate key and value into a tuple
             attributes = params[i].partition("=")
             key = attributes[0]
             value = attributes[2]
-            
+
             #  Parsing the values
             if '\"' in value:
                 # remove the quotation marks
@@ -145,16 +145,14 @@ class HBNBCommand(cmd.Cmd):
                 value = int(value)
             else:
                 pass
-                
-            # Check if instance has the given 
+
+            # Check if instance has the given
             # attribute before creating the values
             if hasattr(new_instance, key):
                 setattr(new_instance, key, value)
-                
-            
+
         new_instance.save()
         print(new_instance.id)
-        
 
     def help_create(self):
         """ Help information for the create method """
