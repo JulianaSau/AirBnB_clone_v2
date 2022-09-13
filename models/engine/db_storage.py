@@ -44,17 +44,20 @@ class DBStorage():
         host = getenv('HBNB_MYSQL_HOST')
         db_name = getenv('HBNB_MYSQL_DB')
 
-        db_uri = f'{dialect}+{driver}://{user}:{passwd}@{host}:{port}/{db_name}'
+        db_uri =
+        f'{dialect}+{driver}://{user}:{passwd}@{host}:{port}/{db_name}'
         self.__engine = create_engine(db_uri, pool_pre_ping=True)
 
         if getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """ Queries all objects on the current database session (self.__session)
-            depending of the class name (argument cls)
-
-            Returns a dictionary: key = <class-name>.<object-id>, value = object
+        """
+        Queries all objects on the current database session
+        (self.__session)
+        depending of the class name (argument cls)
+            Returns a dictionary: key = <class-name>.<object-id>,
+            value = object
         """
         dictionary = {}
         if cls:
@@ -79,18 +82,24 @@ class DBStorage():
         return dictionary
 
     def new(self, obj):
-        """ Adds an object to the current database session (self.__session) """
+        """
+        Adds an object to the current database session (self.__session)
+        """
 
         self.__session.add(obj)
 
     def save(self):
-        """ Commits all changes of the current database session (self.__session) """
+        """
+        Commits all changes of the current database session (self.__session)
+        """
 
         self.__session.commit()
 
     def reload(self):
-        """ Creates all tables in the database (feature of SQLAlchemy)
-            Creates the current database session (self.__session) from the engine (self.__engine)
+        """
+        Creates all tables in the database (feature of SQLAlchemy)
+            Creates the current database session (self.__session)
+            from the engine (self.__engine)
         """
         # all classes who inherit from Base must be imported before calling
         # this fn
@@ -102,7 +111,9 @@ class DBStorage():
         self.__session = Session()
 
     def delete(self, obj=None):
-        """ delete an object(if it exists) from the current database session """
+        """
+        delete an object(if it exists) from the current database session
+        """
         if obj:
             self.__session.delete(obj)
 

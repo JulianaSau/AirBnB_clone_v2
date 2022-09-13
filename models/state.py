@@ -27,7 +27,9 @@ else:
 
         @property
         def cities(self):
-            """ returns the list of City instances for the current State instance"""
+            """
+            returns the list of City instances for the current State instance
+            """
 
             # Gets all cities
             cities = models.storage.all(City).values()

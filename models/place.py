@@ -82,7 +82,8 @@ else:
             """ Getter method for amenities """
             amenities = models.storage.all(Amenity).values()
             amenities_list = [
-                amenity for amenity in amenities if amenity.id in self.amenity_ids]
+                amenity
+                for amenity in amenities if amenity.id in self.amenity_ids]
             return amenities_list
 
         @amenities.setter
