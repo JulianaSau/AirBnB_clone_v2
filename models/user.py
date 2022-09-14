@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """This module defines a class User"""
+import models
 from models.base_model import BaseModel, Base
+import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 from os import getenv
