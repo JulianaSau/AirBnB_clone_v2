@@ -26,9 +26,10 @@ ln -sf /data/web_static/releases/test/ /data/web_static/current
 # Give ownership of /data/ directory to user ubuntu and group. should be recursive for all directories in /data/ directory
 chown -R ubuntu:ubuntu /data/
 
-# Update the Nginx configuration to serve the content of /data/web_static/current/ to hbnb_static (ex: https://mydomainname.tech/hbnb_static). Don’t forget to restart Nginx after updating the configuration:
+# Update the Nginx configuration to serve the content of /data/web_static/current/ to hbnb_static (ex: https://mydomainname.tech/hbnb_static)
 # Use alias inside your Nginx configuration
-sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t\tautoindex off;\n\t}\n' /etc/nginx/sites-available/default
+cfg_file='/etc/nginx/sites-enabled/default'
+grep -q 'location /hbnb_static/' $cfg_file || sed -i "/^\s*server\s*{/a \\\n\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t\tautoindex off;\n\t}\n" $cfg_file
 
 # Restart service
 service nginx restart
