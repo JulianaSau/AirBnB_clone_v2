@@ -40,10 +40,10 @@ def do_deploy(archive_path):
         run("rm {}".format(tmp_path))
 
         # Move the content of the web_static folder to the new version folder
-        run("mv {}/web_static/* {}".format(tmp_path, releases_path))
+        run("mv {}web_static/* {}".format(releases_path, releases_path))
 
         # Delete the symbolic link /data/web_static/current from the web server
-        run("rm -rf {}/web_static".format(releases_path))
+        run("rm -rf {}web_static".format(releases_path))
 
         # Create a new symbolic link on the web server
         run("rm -rf /data/web_static/current")
