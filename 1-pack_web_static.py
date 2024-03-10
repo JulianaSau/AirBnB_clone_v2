@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""This module defines a script that generates a .tgz archive from the contents of the web_static
+"""This module defines a script that generates a .tgz archive
+    from the contents of the web_static
     folder this repo,using the function do_pack"""
 
 from datetime import datetime

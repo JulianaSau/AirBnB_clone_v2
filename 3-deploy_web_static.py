@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Fabric script (based on the file 2-do_deploy_web_static.py)
-   that creates and distributes an archive to your web servers, using the function deploy.
+   that creates and distributes an archive to your web servers, using deploy.
 """
 from datetime import datetime
 from fabric.api import local, env, put, run
@@ -50,7 +50,8 @@ def do_deploy(archive_path):
         archive_without_extension = archive_without_versions.split('.')[0]
 
         # path variables
-        releases_path = "/data/web_static/releases/{}/".format(archive_without_extension)
+        releases_path = "/data/web_static/releases/{}/"
+        .format(archive_without_extension)
         tmp_path = "/tmp/{}".format(archive_without_versions)
 
         # Upload the archive to the /tmp/ directory of the web server
@@ -59,7 +60,8 @@ def do_deploy(archive_path):
         # Create releases directory if it doesn't exist
         run("mkdir -p {}".format(releases_path))
 
-        # Uncompress the archive to the folder /data/web_static/releases/<archive filename without extension> on the web server
+        # Uncompress the archive to the folder /data/web_static/releases/
+        # <archive filename without extension> on the web server
         run("tar -xzf {} -C {}".format(tmp_path, releases_path))
 
         # Delete the archive from the web server

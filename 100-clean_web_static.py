@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Fabric script (based on the file 2-do_deploy_web_static.py)
-   that creates and distributes an archive to your web servers, using the function deploy.
+   that creates and distributes an archive to your web servers,
+   using the function deploy.
 """
 from datetime import datetime
 from fabric.api import local, env, put, run
@@ -22,7 +23,9 @@ def do_clean(number=0):
     number = 1 if int(number) == 0 else int(number)
 
     # Local clean
-    local("ls -t versions | tail -n +{} | xargs -I {{}} rm versions/{{}}".format(number + 1))
+    local("ls -t versions | tail -n +{} | xargs -I {{}} rm versions/{{}}"
+          .format(number + 1))
 
     releases_path = '/data/web_static/releases'
-    run('cd {} ; ls -t | tail -n +{} | xargs rm -rf'.format(releases_path, number + 1))
+    run('cd {} ; ls -t | tail -n +{} | xargs rm -rf'
+        .format(releases_path, number + 1))
