@@ -44,15 +44,14 @@ def do_deploy(archive_path):
 
     try:
         # remove versions from archive_path
-        archive_without_versions = archive_path.split('/')[1]
+        archive_file = archive_path.split('/')[1]
 
         # remove the file extension from archive_path
-        archive_without_extension = archive_without_versions.split('.')[0]
+        archive_name = archive_file.split('.')[0]
 
         # path variables
-        releases_path = "/data/web_static/releases/{}/"
-        .format(archive_without_extension)
-        tmp_path = "/tmp/{}".format(archive_without_versions)
+        releases_path = "/data/web_static/releases/{}/".format(archive_name)
+        tmp_path = "/tmp/{}".format(archive_file)
 
         # Upload the archive to the /tmp/ directory of the web server
         put(archive_path, '/tmp/')
