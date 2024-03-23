@@ -5,13 +5,13 @@ from flask import Flask, render_template
 app = Flask(__name__, template_folder="templates")
 
 
-@app.route('/', methods=['GET'], strict_slashes=False)
+@app.route('/', strict_slashes=False)
 def hello():
     """Returns a string "Hello HBNB!" at the root route"""
     return "Hello HBNB!"
 
 
-@app.route('/hbnb', methods=['GET'], strict_slashes=False)
+@app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """Returns a string "HBNB" at the /hbnb route"""
     return "HBNB"
