@@ -6,12 +6,13 @@ from models import storage
 app = Flask(__name__, template_folder="templates")
 
 
-@app.route('/hbnb_filters', strict_slashes=False)
+@app.route('/hbnb', strict_slashes=False)
 def hbnb_filters():
-    """Renders states list into the template "10-hbnb_filters.html"""
+    """Renders states list into the template "100-hbnb.html"""
     states = storage.all("State").values()
     amenities = storage.all("Amenity").values()
-    return render_template('10-hbnb_filters.html', states=states, amenities=amenities)
+    places = storage.all("Place").values()
+    return render_template('100-hbnb.html', states=states, places=places, amenities=amenities)
 
 
 @app.teardown_appcontext
