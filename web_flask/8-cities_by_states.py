@@ -6,11 +6,12 @@ from models import storage
 app = Flask(__name__, template_folder="templates")
 
 
-@app.route('/states_list', strict_slashes=False)
-def states_list():
-    """Renders states list into the template "7-states_list.html"""
+@app.route('/cities_by_states', strict_slashes=False)
+def cities_by_states():
+    """Renders states list into the template "8-cities_by_states.html"""
     states = storage.all("State").values()
-    return render_template("7-states_list.html", states=states)
+    print("states", states)
+    return render_template("8-cities_by_states.html", states=states)
 
 
 @app.teardown_appcontext
