@@ -8,10 +8,7 @@ app = Flask(__name__, template_folder="templates")
 
 @app.route('/states_list', strict_slashes=False)
 def states_list():
-    """Renders “6-number_odd_or_even.html” template only if n is an integer, 
-        and shows whether odd/even
-        Args:
-            n (int): The number to check
+    """Renders “6-number_odd_or_even.html” template only if n is an integer
     """
     states = storage.all("State").values()
     return render_template("7-states_list.html", states=states)
